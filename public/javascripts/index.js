@@ -39,8 +39,8 @@ $(document).on("click", "#cancel-chirp-button", function() {
   });
 });
 
-// $(document).ready(function() {
-//  setTimeout(function() {
-//    $("#instructions-modal").modal("show");
-//  }, 1000);
-// });
+$(document).ready(function() {
+ setTimeout(function() {
+   $("#instructions-modal").modal("show");
+ }, 1000);
+});
