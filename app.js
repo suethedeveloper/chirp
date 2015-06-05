@@ -1,6 +1,7 @@
 var express = require("express");
 var app = express(),
-    server = require('http').createServer(app);
+    http    = require('http'),
+    db      = require('./models');
 
 //Set up PG 
 var pg = require("pg");
@@ -55,7 +56,19 @@ app.delete("/remove/:id", function(req, res){
 });
 
 // app.listen(3000);
-server.listen(process.env.PORT || 3000);
-console.log(process.env.DATABASE_URL);
-console.log(pg);
+// server.listen(process.env.PORT || 3000);
+
+// all environments
+app.set('port', process.env.PORT || 3000);
+
+// development only
+if ('development' === app.get('env')) {
+  app.use(express.errorHandler());
+}
+
+db.sequelize.sync().then(function() {
+  http.createServer(app).listen(app.get('port'), function(){
+    console.log('Express server listening on port ' + app.get('port'));
+  });
+});
 
