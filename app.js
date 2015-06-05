@@ -56,4 +56,6 @@ app.delete("/remove/:id", function(req, res){
 
 // app.listen(3000);
 server.listen(process.env.PORT || 3000);
+console.log(process.env.DATABASE_URL);
+console.log(pg);
 
