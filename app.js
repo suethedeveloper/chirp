@@ -1,5 +1,6 @@
 var express = require("express");
-var app = express();
+var app = express(),
+    server = require('http').createServer(app);
 
 //Set up PG 
 var pg = require("pg");
@@ -53,4 +54,6 @@ app.delete("/remove/:id", function(req, res){
   });
 });
 
-app.listen(3000);
+// app.listen(3000);
+server.listen(process.env.PORT || 3000);
+
